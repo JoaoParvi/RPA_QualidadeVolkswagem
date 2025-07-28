@@ -6,4 +6,3 @@ pyodbc
 urllib3
 selenium
 webdriver-manager
-pyautogui

@@ -1,6 +1,5 @@
 import time
 import pandas as pd
-import pyautogui
 import urllib
 import logging
 from io import StringIO
@@ -31,51 +30,51 @@ navegador.maximize_window()
 
 time.sleep(5)
 
-# Clicar no campo login
-pyautogui.moveTo(944, 145, duration=1)
-pyautogui.click()
+# Acessar a URL
+navegador.get(url)
+wait = WebDriverWait(navegador, 20)
+
+# Esperar o primeiro iframe 'main' e entrar nele
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "main")))
+
+# Dentro dele, entrar no iframe 'mainApp'
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "mainApp")))
+
+# Agora, o conteúdo carregado é um <frameset>, precisamos entrar no frame 'HeaderMenu'
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "HeaderMenu")))
+
+# Agora estamos no frame correto, preencher login
+campo_login = wait.until(EC.presence_of_element_located((By.ID, "txtCPFCNPJ")))
+campo_login.send_keys(login)
+time.sleep(6)
+
+campo_senha = wait.until(EC.presence_of_element_located((By.ID, "txtSenha")))
+campo_senha.send_keys(senha)
+campo_senha.send_keys(Keys.ENTER)
+time.sleep(6)
+
+navegador.switch_to.default_content()
+
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "main")))
+
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "mainApp")))
+
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "App")))
+
+campo_filtroBre =  wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#rblEmpresa > tbody > tr:nth-child(1) > td:nth-child(1) > label")))
+campo_filtroBre.click()
 time.sleep(3)
 
-# Digitar login
-navegador.switch_to.active_element.send_keys(login)
+navegador.switch_to.default_content()
+
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.NAME, "divframe")))
+
+campo_Prog =  wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#rptMenuPrincipal_ctl06_hlkItemMenu")))
+campo_Prog.click()
 time.sleep(3)
 
-# Apertar TAB para passar para o campo senha
-navegador.switch_to.active_element.send_keys(Keys.TAB)
-time.sleep(3)
-
-# Digitar senha e apertar enter
-navegador.switch_to.active_element.send_keys(senha)
-time.sleep(3)
-navegador.switch_to.active_element.send_keys(Keys.ENTER)
-time.sleep(5)  # Aguardar a resposta do servidor
-
-# Clicando na empresa (Servidor)
-pyautogui.moveTo(380,308, duration=1)
-pyautogui.click()
-time.sleep(3)
-
-# Programas
-pyautogui.moveTo(762, 201, duration=1)
-pyautogui.click()
-time.sleep(3)
-
-# Abrir CEM
-pyautogui.moveTo(199, 332, duration=1)
-pyautogui.click()
-time.sleep(3)
-
-# Obter todas as janelas/abas abertas
-abas = navegador.window_handles
-
-# Alternar para a segunda aba (index 1, pois a indexação começa em 0)
-navegador.switch_to.window(abas[1])
-
-# Fechar a segunda aba
-navegador.close()
-
-# Alternar de volta para a primeira aba (index 0)
-navegador.switch_to.window(abas[0])
+campo_CEM =  wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#sub_77 > table > tbody > tr > td:nth-child(1) > h1:nth-child(8) > a")))
+campo_CEM.click()
 time.sleep(3)
 
 navegador.get('https://satisfacaovw.com.br/cem/Previa/')
