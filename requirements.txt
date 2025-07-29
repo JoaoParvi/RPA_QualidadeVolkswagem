@@ -6,3 +6,4 @@ pyodbc
 urllib3
 selenium
 webdriver-manager
+lxml
