@@ -83,16 +83,16 @@ time.sleep(10)
 navegador.switch_to.active_element.send_keys(Keys.ENTER)
 time.sleep(3)
 
-campo_area = WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Area")))
+campo_area = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Area")))
 campo_area.click()
 
-campo_posvenda = WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Area > option:nth-child(2)")))
+campo_posvenda = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Area > option:nth-child(2)")))
 campo_posvenda.click()
 
-grupo_filtro = WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "input.nivel:nth-child(6)")))
+grupo_filtro = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "input.nivel:nth-child(6)")))
 grupo_filtro.click()
 
-input_filtroAuxiliar = WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".chosen-choices")))
+input_filtroAuxiliar = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".chosen-choices")))
 input_filtroAuxiliar.click()
 
 navegador.switch_to.active_element.send_keys("93")
@@ -103,13 +103,13 @@ time.sleep(5)
 
 navegador.switch_to.active_element.send_keys(Keys.ENTER)
 
-campo_filtrar = WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#filtrar")))
+campo_filtrar = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#filtrar")))
 campo_filtrar.click()
 time.sleep(3)
 
 
 
-tabela_elemento = WebDriverWait(navegador, 10).until(
+tabela_elemento = WebDriverWait(navegador, 20).until(
     EC.presence_of_element_located((By.CSS_SELECTOR, ".datagrid-btable"))
 )
 
@@ -117,13 +117,13 @@ tabela_elemento = WebDriverWait(navegador, 10).until(
 # Extrai o HTML da tabela
 tabela_html = tabela_elemento.get_attribute('outerHTML')
 
-campo_passarpage = WebDriverWait(navegador, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".pagination-next")))
+campo_passarpage = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".pagination-next")))
 campo_passarpage.click()
 time.sleep(3)
 
 
 
-tabela_elemento1 = WebDriverWait(navegador, 10).until(
+tabela_elemento1 = WebDriverWait(navegador, 20).until(
     EC.presence_of_element_located((By.CSS_SELECTOR, ".datagrid-btable"))
 )
 
