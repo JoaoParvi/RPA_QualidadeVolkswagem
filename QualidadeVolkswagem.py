@@ -80,6 +80,8 @@ time.sleep(3)
 navegador.get('https://satisfacaovw.com.br/cem/Previa/')
 time.sleep(10)
 
+navegador.switch_to.window(navegador.window_handles[0])
+
 navegador.switch_to.active_element.send_keys(Keys.ENTER)
 time.sleep(3)
 
@@ -95,7 +97,15 @@ grupo_filtro.click()
 input_filtroAuxiliar = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".chosen-choices")))
 input_filtroAuxiliar.click()
 
-navegador.switch_to.active_element.send_keys("93")
+
+input_filtroAuxiliar2 = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#dvFiltros > div:nth-child(3) > div > input:nth-child(6)")))
+input_filtroAuxiliar2.click()
+
+
+input_filtroAuxiliar2 = WebDriverWait(navegador, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#CodAux_chosen > ul > li > input")))
+input_filtroAuxiliar2.click()
+
+navegador.switch_to.active_element.send_keys("BREMEN")
 time.sleep(3)
 
 navegador.switch_to.active_element.send_keys(Keys.ENTER)
